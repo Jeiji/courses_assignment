@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  width: 80%;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+input, textarea {
+  display: block;
+}
+
+form, .class {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  padding: 5px 10px;
+  background-color: #cc1212;
+  color: white;
+  margin: 10px auto;
+  text-align: center;
+  width: 80px;
+}
+
+th, td {
+  min-width: 200px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+table {
+  border-collapse:collapse;
+  width: 80%;
+  margin: 20px 0;
+}

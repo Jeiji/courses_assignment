@@ -1,0 +1,54 @@
+<!DOCTYPE html public "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8">
+		<title>Courses</title>
+		{% load staticfiles %}
+		<link rel='stylesheet' type='text/css' href="{% static 'courses/style.css' %}">
+	</head>
+  <body>
+    <div id='wrapper'>
+      <h2>Add New Course</h2>
+      <form action="/add_course_path" method="post">
+        {% csrf_token %}
+        Course Name:
+        <input type="text" name="course_name" >
+        Description:
+        <textarea name="description" ></textarea>
+        <input type="submit"  value="Add New Class">
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for course in courses %}
+              <tr>
+                <td>{{ course.course_name }}</td>
+                <td>
+                  {% for description in descriptions  %}
+                    {% if description.course.id == course.id  %}
+                      {{ description.text }}
+                    {% endif %}
+                  {% endfor %}
+                </td>
+                <td>{{ course.created_at }}</td>
+                <td>
+                  <a class='check' href="/delete_check_{{ course.id }}">Remove</a>
+									<a href="/comments_for_{{ course.id }}">Discussion</a>
+                </td>
+              </tr>
+          {% endfor %}
+
+
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

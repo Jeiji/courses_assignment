@@ -1,0 +1,43 @@
+<!DOCTYPE html public "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8">
+		<title>Courses</title>
+		{% load staticfiles %}
+		<link rel='stylesheet' type='text/css' href="{% static 'courses/style.css' %}">
+	</head>
+  <body>
+    <div id='wrapper'>
+      <h2>Add New Comment for {{ course.course_name }}</h2>
+      <form action="/add_comment_path_{{ course.id }}" method="post">
+        {% csrf_token %}
+        Comment:
+        <textarea name="comment" ></textarea>
+        <input type="submit"  value="Add New Class">
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Comment</th>
+            <th>Date Added</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for comment in comments %}
+              <tr>
+                <td>
+                    {% if comment.course.id == course.id  %}
+                      {{ comment.text }}
+                    {% endif %}
+                </td>
+                <td>{{ comment.created_at }}</td>
+              </tr>
+          {% endfor %}
+
+
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
